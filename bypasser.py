@@ -1599,7 +1599,7 @@ def tnlink(url):
 ####################################################################################################
 # omegalinks
 
-def mdisk(url):
+def omegalinks(url):
     
     client = cloudscraper.create_scraper(allow_brotli=False)
     
