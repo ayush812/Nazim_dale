@@ -1622,6 +1622,12 @@ def omegalinks(url):
     try:
         return r.json()['url']
     except: return "Something went wrong :("
+	
+####################################################################################################
+# tinyurl
+def tinyurl(tinyurl_url: str) -> str:
+	response = requests.get(tinyurl_url).url
+	return response
 
 
 #####################################################################################################        
@@ -1799,6 +1805,11 @@ def shortners(url):
         print("entered omegalinks:",url)
         return omegalinks(url)
         
+# tinyurl
+    elif "https://tinyurl.com/" in url:
+        print("entered droplink:",url)
+        return tinyurl(url)
+
     # htpmovies sharespark cinevood
     elif "https://htpmovies." in url or 'https://sharespark.me/' in url or "https://cinevood." in url or "https://atishmkv." in url \
         or "https://teluguflix" in url or 'https://taemovies' in url or "https://toonworld4all" in url or "https://animeremux" in url:
