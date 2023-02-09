@@ -1629,6 +1629,26 @@ def tinyurl(tinyurl_url: str) -> str:
 	response = requests.get(tinyurl_url).url
 	return response
 
+#######################################################
+# gtlinks
+
+def gtlinks(url: str) -> str:
+	url = url[:-1] if url[-1] == '/' else url
+	if "theforyou.in" in url:
+		token = url.split("=")[-1]
+	else:
+		url = requests.get(url).url
+		token = url.split("=")[-1]
+	domain = "https://go.theforyou.in/"
+	client = requests.Session()
+	response = client.get(domain+token, headers={"referer":domain+token})
+	soup = BeautifulSoup(response.content, "html.parser")
+	inputs = soup.find(id="go-link").find_all(name="input")
+	data = { input.get('name'): input.get('value') for input in inputs }
+	time.sleep(5)
+	headers={"x-requested-with": "XMLHttpRequest"}
+	bypassed_url = client.post(domain+"links/go", data=data, headers=headers).json()["url"]
+	return bypassed_url
 
 #####################################################################################################        
 # helpers
@@ -1807,8 +1827,13 @@ def shortners(url):
         
 # tinyurl
     elif "https://tinyurl.com/" in url:
-        print("entered droplink:",url)
+        print("entered tinyurl:",url)
         return tinyurl(url)
+
+# gtlinks   
+      elif "https://gtlinks.me/" in url:
+          print("entered gtlinks:",url)
+          return gtlinks(url)
 
     # htpmovies sharespark cinevood
     elif "https://htpmovies." in url or 'https://sharespark.me/' in url or "https://cinevood." in url or "https://atishmkv." in url \
