@@ -54,7 +54,9 @@ def loopthread(message):
 @app.on_message(filters.command(["start"]))
 def send_start(client: pyrogram.client.Client, message: pyrogram.types.messages_and_media.message.Message):
     app.send_message(message.chat.id, f"__👋 ʜɪ **{message.from_user.mention}**, ɪ ᴀᴍ ᴀᴅᴠᴀɴᴄᴇ ʟɪɴᴋ ʙʏᴘᴀssᴇʀ ʙᴏᴛ, ᴊᴜsᴛ sᴇɴᴅ ᴍᴇ ᴀɴʏ sᴜᴘᴘᴏʀᴛᴇᴅ ʟɪɴᴋs ᴀɴᴅ ɪ ᴡɪʟʟ ʏᴏᴜ ɢᴇᴛ ʏᴏᴜ ʀᴇsᴜʟᴛs.\nCheckout /help ᴛᴏ ʀᴇᴀᴅ ᴍᴏʀᴇ__",
-    reply_markup=InlineKeyboardMarkup([[ InlineKeyboardButton("🌐 Source Code", url="https://te.legra.ph/file/2184b7d4cd6fa1cfc8ac4.mp4")]]), reply_to_message_id=message.id)
+    reply_markup=InlineKeyboardMarkup([[ InlineKeyboardButton("💌 𝙼𝙾𝚅𝙸𝙴 𝙱𝙾𝚃 💌", url="https://t.me/mkvCinemastg_Bot")],[InlineKeyboardButton("⚡ 𝚄𝙿𝙳𝙰𝚃𝙴𝚂 ⚡", url="https://t.me/skmovieslinks")],
+                                     [InlineKeyboardButton("📺 24/7 𝙼𝙾𝚅𝙸𝙴𝚂 📺", url="https://t.me/skymovieshdlinks"), InlineKeyboardButton("💎TV SHOWS💎", url="https://t.me/Serials_Before_Tv")],
+                                     [ InlineKeyboardButton("🌐 Source Code", url="https://te.legra.ph/file/2184b7d4cd6fa1cfc8ac4.mp4")]]), reply_to_message_id=message.id)
 
 
 # help command
