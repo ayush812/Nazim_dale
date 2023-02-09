@@ -1595,6 +1595,36 @@ def tnlink(url):
     try:
         return r.json()['url']
     except: return "Something went wrong :("
+	
+####################################################################################################
+# omegalinks
+
+def mdisk(url):
+    
+    client = cloudscraper.create_scraper(allow_brotli=False)
+    
+    
+    DOMAIN = "https://mdisk.pro"
+
+    ref = "https://m.meclipstudy.in/"
+    
+    h = {"referer": ref}
+  
+    resp = client.get(url,headers=h)
+    
+    soup = BeautifulSoup(resp.content, "html.parser")
+    
+    inputs = soup.find_all("input")
+   
+    data = { input.get('name'): input.get('value') for input in inputs }
+
+    h = { "x-requested-with": "XMLHttpRequest" }
+    
+    time.sleep(8)
+    r = client.post(f"{DOMAIN}/links/go", data=data, headers=h)
+    try:
+        return r.json()['url']
+    except: return "Something went wrong :("
 
 
 #####################################################################################################        
@@ -1766,6 +1796,11 @@ def shortners(url):
     elif "https://link.tnlink.in" in url:
         print("entered tnlink:",url)
         return tnlink(url)
+
+# omegalinks
+    elif "https://mdisk.pro" in url:
+        print("entered omegalinks:",url)
+        return omegalinks(url)
         
     # htpmovies sharespark cinevood
     elif "https://htpmovies." in url or 'https://sharespark.me/' in url or "https://cinevood." in url or "https://atishmkv." in url \
