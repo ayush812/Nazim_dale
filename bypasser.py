@@ -1830,10 +1830,10 @@ def shortners(url):
         print("entered tinyurl:",url)
         return tinyurl(url)
 
-# gtlinks   
-      elif "https://gtlinks.me/" in url:
-          print("entered gtlinks:",url)
-          return gtlinks(url)
+# tinyurl
+    elif "https://gtlinks.me" in url:
+        print("entered gtlinks:",url)
+        return gtlinks(url)
 
     # htpmovies sharespark cinevood
     elif "https://htpmovies." in url or 'https://sharespark.me/' in url or "https://cinevood." in url or "https://atishmkv." in url \
