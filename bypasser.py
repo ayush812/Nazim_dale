@@ -1597,31 +1597,40 @@ def tnlink(url):
 # omegalinks
 
 def omegalinks(url):
-    
     client = cloudscraper.create_scraper(allow_brotli=False)
-    
-    
     DOMAIN = "https://mdisk.pro"
-
-    ref = "https://m.meclipstudy.in/"
-    
+    ref = "https://m.meclipstudy.in/" 
     h = {"referer": ref}
-  
     resp = client.get(url,headers=h)
-    
     soup = BeautifulSoup(resp.content, "html.parser")
-    
     inputs = soup.find_all("input")
-   
     data = { input.get('name'): input.get('value') for input in inputs }
-
     h = { "x-requested-with": "XMLHttpRequest" }
-    
     time.sleep(8)
     r = client.post(f"{DOMAIN}/links/go", data=data, headers=h)
     try:
         return r.json()['url']
     except: return "Something went wrong :("
+
+#####################################################################################################        
+# mdiskshortner
+
+def mdiskshortner(url):
+    client = cloudscraper.create_scraper(allow_brotli=False)
+    DOMAIN = "https://mdiskshortner.link/"
+    ref = "https://www.proappapk.com/" 
+    h = {"referer": ref}
+    resp = client.get(url,headers=h)
+    soup = BeautifulSoup(resp.content, "html.parser")
+    inputs = soup.find_all("input")
+    data = { input.get('name'): input.get('value') for input in inputs }
+    h = { "x-requested-with": "XMLHttpRequest" }
+    time.sleep(8)
+    r = client.post(f"{DOMAIN}/links/go", data=data, headers=h)
+    try:
+        return r.json()['url']
+    except: return "Something went wrong :("
+
 	
 ####################################################################################################
 # tinyurl
@@ -1824,6 +1833,11 @@ def shortners(url):
     elif "https://mdisk.pro" in url:
         print("entered omegalinks:",url)
         return omegalinks(url)
+
+# mdiskshortner
+    elif "https://mdiskshortner.link/" in url:
+        print("entered mdiskshortner:",url)
+        return mdiskshortner(url)
         
 # tinyurl
     elif "https://tinyurl.com/" in url:
