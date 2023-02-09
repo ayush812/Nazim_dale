@@ -1155,7 +1155,6 @@ def gplinks(url: str):
  headers={"x-requested-with": "XMLHttpRequest"}
  bypassed_url = client.post(domain+"links/go", data=data, headers=headers).json()["url"]
  return bypassed_url
-    except: return 'Something went wrong :('
 
 
 ######################################################################################################
