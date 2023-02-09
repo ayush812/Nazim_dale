@@ -862,7 +862,7 @@ def shortlingly(url):
 
 def gyanilinks(url):
     client = cloudscraper.create_scraper(allow_brotli=False)
-    if 'gtlinks.me' in url:
+    if 'gtlinks.com' in url:
         DOMAIN = "https://go.bloggertheme.xyz"
     else:
         return "Incorrect Link"
