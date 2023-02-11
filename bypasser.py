@@ -1659,6 +1659,27 @@ def gtlinks(url: str) -> str:
 	bypassed_url = client.post(domain+"links/go", data=data, headers=headers).json()["url"]
 	return bypassed_url
 
+#######################################################
+# lsfy (linkshort)
+ 
+
+def lksfy(url):
+    client = cloudscraper.create_scraper(allow_brotli=False)
+    DOMAIN = "https://lksfy.site/"
+    ref = "https://kalvidudes.in/" 
+    h = {"referer": ref}
+    resp = client.get(url,headers=h)
+    soup = BeautifulSoup(resp.content, "html.parser")
+    inputs = soup.find_all("input")
+    data = { input.get('name'): input.get('value') for input in inputs }
+    h = { "x-requested-with": "XMLHttpRequest" }
+    time.sleep(8)
+    r = client.post(f"{DOMAIN}/links/go", data=data, headers=h)
+    try:
+        return r.json()['url']
+    except: return "Something went wrong :("
+
+
 #####################################################################################################        
 # helpers
 
@@ -1844,10 +1865,14 @@ def shortners(url):
         print("entered tinyurl:",url)
         return tinyurl(url)
 
-# tinyurl
+# gtlinks
     elif "https://gtlinks.me" in url:
         print("entered gtlinks:",url)
         return gtlinks(url)
+# lksfy
+    elif "https://lksfy.com/" in url:
+        print("entered lksfy:",url)
+        return lksfy(url)
 
     # htpmovies sharespark cinevood
     elif "https://htpmovies." in url or 'https://sharespark.me/' in url or "https://cinevood." in url or "https://atishmkv." in url \
