@@ -1665,7 +1665,7 @@ def gtlinks(url: str) -> str:
 
 def lksfy(url):
     client = cloudscraper.create_scraper(allow_brotli=False) 
-    DOMAIN = "https://kalvidudes.in/"
+    DOMAIN = "https://lksfy.com/"
     ref = "https://lksfy.site/" 
     h = {"referer": ref}
     resp = client.get(url,headers=h)
@@ -1678,6 +1678,9 @@ def lksfy(url):
     try:
         return r.json()['url']
     except: return "Something went wrong :("
+	
+	
+
 	
 
 #######################################################
