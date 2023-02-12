@@ -1664,9 +1664,13 @@ def gtlinks(url: str) -> str:
  
 
 def lksfy(url):
-    client = cloudscraper.create_scraper(allow_brotli=False)
-    DOMAIN = "https://lksfy.site/"
-    ref = "https://kalvidudes.in/" 
+    client = cloudscraper.create_scraper(allow_brotli=False) 
+    if 'https://lksfy.com/' in url:
+        DOMAIN = "https://kalvidudes.in/"
+    elif 'https://kalvidudes.in/' in url:
+    	  DOMAIN = "https://frequet.com/"
+    else:
+    	 ref = "https://lksfy.site/" 
     h = {"referer": ref}
     resp = client.get(url,headers=h)
     soup = BeautifulSoup(resp.content, "html.parser")
