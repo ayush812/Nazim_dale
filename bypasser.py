@@ -859,7 +859,7 @@ def shortlingly(url):
 
 #######################################################
 # Gyanilinks - gtlinks.me
-
+"""
 def gyanilinks(url):
     client = cloudscraper.create_scraper(allow_brotli=False)
     if 'gtlinks.me' in url:
@@ -888,6 +888,7 @@ def gyanilinks(url):
     try:
         return r.json()['url']
     except: return "Something went wrong :("
+    """
 
 
 #######################################################
@@ -1640,7 +1641,7 @@ def tinyurl(tinyurl_url: str) -> str:
 
 #######################################################
 # gtlinks
-
+"""
 def gtlinks(url: str) -> str:
 	url = url[:-1] if url[-1] == '/' else url
 	if "theforyou.in" in url:
@@ -1658,6 +1659,7 @@ def gtlinks(url: str) -> str:
 	headers={"x-requested-with": "XMLHttpRequest"}
 	bypassed_url = client.post(domain+"links/go", data=data, headers=headers).json()["url"]
 	return bypassed_url
+	"""
 
 #######################################################
 # lsfy (linkshort)
@@ -1920,9 +1922,9 @@ def shortners(url):
         return tinyurl(url)
 
 # gtlinks
-    elif "https://gtlinks.me" in url:
-        print("entered gtlinks:",url)
-        return gtlinks(url)
+    # elif "https://gtlinks.me" in url:
+        # print("entered gtlinks:",url)
+        # return gtlinks(url)
 # lksfy
     elif "https://lksfy.com/" in url:
         print("entered lksfy:",url)
