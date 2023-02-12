@@ -1681,8 +1681,6 @@ def lksfy(url):
 	
 	
 
-	
-
 #######################################################
 # indi url
 	
@@ -1705,6 +1703,36 @@ def indi(url):
         return r.json()['url']
     except: return "Something went wrong :("
 
+#######################################################
+# SUPPORTED DOMAINS:- rocklinks.net - gtlinks.me - shortingly.me
+
+def multi_byp(url):
+    client = cloudscraper.create_scraper(allow_brotli=False)
+    if 'rocklinks.net' in url:
+        DOMAIN = "https://rl.techysuccess.com"
+    elif 'gtlinks.me' in url:
+        DOMAIN = "https://go.kinemaster.cc"
+    elif 'shortingly.me' in url:
+        DOMAIN = "https://go.gyanitheme.com"
+    else:
+        DOMAIN = "https://rocklinks.net"
+    url = url[:-1] if url[-1] == '/' else url
+    code = url.split("/")[-1]
+    if 'rocklinks.net' in url:
+        final_url = f"{DOMAIN}/{code}?quelle=" 
+    else:
+        final_url = f"{DOMAIN}/{code}"
+    resp = client.get(final_url)
+    soup = BeautifulSoup(resp.content, "html.parser")
+    try: inputs = soup.find(id="go-link").find_all(name="input")
+    except: return "Incorrect Link"
+    data = { input.get('name'): input.get('value') for input in inputs }
+    h = { "x-requested-with": "XMLHttpRequest" }
+    time.sleep(10)
+    r = client.post(f"{DOMAIN}/links/go", data=data, headers=h)
+    try:
+        return r.json()['url']
+    except: return "Something went wrong :("
 
 #####################################################################################################        
 # helpers
@@ -1903,6 +1931,17 @@ def shortners(url):
     elif "https://go.indiurl.in.net/" in url:
         print("entered indi url:",url)
         return indi(url)
+#multibyp
+    elif "https://rocklinks.net/" in url:
+        print("entered rocklink url:",url)
+        return multi_byp(url)
+    elif "https://gtlinks.me/" in url:
+        print("entered gtlinks url:",url)
+        return multi_byp(url)
+    elif "https://shortingly.me/" in url:
+        print("entered shortingly url:",url)
+        return multi_byp(url)
+
 
     # htpmovies sharespark cinevood
     elif "https://htpmovies." in url or 'https://sharespark.me/' in url or "https://cinevood." in url or "https://atishmkv." in url \
