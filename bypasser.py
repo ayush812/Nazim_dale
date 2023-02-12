@@ -1678,6 +1678,29 @@ def lksfy(url):
     try:
         return r.json()['url']
     except: return "Something went wrong :("
+	
+
+#######################################################
+# indi url
+	
+def indi(url):
+    client = requests.session()
+    DOMAIN = "https://file.earnash.com/"
+    url = url[:-1] if url[-1] == '/' else url
+    code = url.split("/")[-1]
+    final_url = f"{DOMAIN}/{code}"
+    ref = "https://x.earnash.com/"
+    h = {"referer": ref}
+    resp = client.get(final_url,headers=h)
+    soup = BeautifulSoup(resp.content, "html.parser")
+    inputs = soup.find_all("input")
+    data = { input.get('name'): input.get('value') for input in inputs }
+    h = { "x-requested-with": "XMLHttpRequest" }
+    time.sleep(10)
+    r = client.post(f"{DOMAIN}/links/go", data=data, headers=h)
+    try:
+        return r.json()['url']
+    except: return "Something went wrong :("
 
 
 #####################################################################################################        
@@ -1873,6 +1896,10 @@ def shortners(url):
     elif "https://lksfy.com/" in url:
         print("entered lksfy:",url)
         return lksfy(url)
+# indi
+    elif "https://go.indiurl.in.net/" in url:
+        print("entered indi url:",url)
+        return indi(url)
 
     # htpmovies sharespark cinevood
     elif "https://htpmovies." in url or 'https://sharespark.me/' in url or "https://cinevood." in url or "https://atishmkv." in url \
