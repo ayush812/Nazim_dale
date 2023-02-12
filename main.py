@@ -18,9 +18,6 @@ api_hash = os.environ.get("HASH", "fbe8a002efe8427759371eab5809f1de")
 api_id = os.environ.get("ID", "18123144")
 app = Client("my_bot",api_id=api_id, api_hash=api_hash,bot_token=bot_token)  
 
-# forse sub
-AUTH_CHANNEL = int(auth_channel) if auth_channel and id_pattern.search(auth_channel) else auth_channel
-AUTH_GROUPS = [int(admin) for admin in environ.get("AUTH_GROUPS", "-1001731440190").split()]
 
 
 # loop thread
