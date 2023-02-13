@@ -399,9 +399,9 @@ def flix(url):
     client = requests.session()
     r = client.get(url)
     soup = BeautifulSoup (r.text, "html.parser")
-        links = soup.select('a[href*="gdtot"]')
+        links = soup.select('a[href*="filepress"]')
         if len(links) == 0:
-             links = soup.select('a[href*="filepress"]')
+             links = soup.select('a[href*="gdtot"]')
         gd_txt = f"Total Links Found : {len(links)}\n\n"
         print(gd_txt)
         for a in links:
