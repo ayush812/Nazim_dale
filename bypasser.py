@@ -410,6 +410,23 @@ def flix(url):
 
 print(flix(url))
 
+###################################################
+# mkvcinemas
+
+def mkvcinemas(url):
+    movies_list = []
+    movies_details = {}
+    website = BeautifulSoup(requests.get(f"https://www.mkvcinemas.mom/?s={query.replace(' ', '+')}").text, "html.parser")
+    movies = website.find_all("a", {'class': 'ml-mask jt'})
+    for movie in movies:
+        if movie:
+            movies_details["id"] = f"link{movies.index(movie)}"
+            movies_details["title"] = movie.find("span", {'class': 'mli-info'}).text
+            url_list[movies_details["id"]] = movie['href']
+        movies_list.append(movies_details)
+        movies_details = {}
+    return movies_list
+
 
 ###################################################
 # script links
@@ -1973,6 +1990,11 @@ def shortners(url):
     elif "https://teluguflix.site/" in url:
         print("entered telguflix:",url)
         return flix(url)
+
+# mkvcinemas
+    elif "https://www.mkvcinemas." in url:
+        print("entered telguflix:",url)
+        return mkvcinemas(url)
 
 
     # gdrive look alike
