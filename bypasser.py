@@ -1970,7 +1970,7 @@ def shortners(url):
         return scrappers(url)
 
 # telguflix
-    elif "https://teluguflix." in url:
+    elif "https://teluguflix.site/" in url:
         print("entered telguflix:",url)
         return flix(url)
 
