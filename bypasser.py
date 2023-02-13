@@ -320,20 +320,20 @@ def scrappers(link):
             prsd += o + '\n\n'
         return prsd
 
-    elif "teluguflix" in link:
-        gd_txt = ""
-        r = rget(link)
-        soup = BeautifulSoup (r.text, "html.parser")
-        links = soup.select('a[href*="gdtot"]')
+   def teluguflix(url):
+    client = requests.session()
+    r = client.get(url)
+    soup = BeautifulSoup (r.text, "html.parser")
+        links = soup.select('a[href*="filepress"]')
+        if len(links) == 0:
+             links = soup.select('a[href*="gdtot"]')
         gd_txt = f"Total Links Found : {len(links)}\n\n"
-        for no, link in enumerate(links, start=1):
-            gdlk = link['href']
-            t = rget(gdlk)
-            soupt = BeautifulSoup(t.text, "html.parser")
-            title = soupt.select('meta[property^="og:description"]')
-            gd_txt += f"{no}. <code>{(title[0]['content']).replace('Download ' , '')}</code>\n{gdlk}\n\n"
-            asleep(1.5)
-        return gd_txt
+        print(gd_txt)
+        for a in links:
+             link = a["href"]
+             print(link) 
+
+print(flix(url))
     
     elif "taemovies" in link:
         gd_txt, no = "", 0
@@ -392,23 +392,6 @@ def scrappers(link):
             links.append(hy['href'])
         return links
 
-###################################################
-# telguflix movies
-
-def flix(url):
-    client = requests.session()
-    r = client.get(url)
-    soup = BeautifulSoup (r.text, "html.parser")
-        links = soup.select('a[href*="filepress"]')
-        if len(links) == 0:
-             links = soup.select('a[href*="gdtot"]')
-        gd_txt = f"Total Links Found : {len(links)}\n\n"
-        print(gd_txt)
-        for a in links:
-             link = a["href"]
-             print(link) 
-
-print(flix(url))
 
 ###################################################
 # mkvcinemas
@@ -1986,10 +1969,6 @@ def shortners(url):
         print("entered htpmovies sharespark cinevood atishmkv:",url)
         return scrappers(url)
 
-# telguflix
-    elif "https://teluguflix.site/" in url:
-        print("entered telguflix:",url)
-        return flix(url)
 
 # mkvcinemas
     elif "https://www.mkvcinemas." in url:
