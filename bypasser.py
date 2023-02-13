@@ -392,6 +392,24 @@ def scrappers(link):
             links.append(hy['href'])
         return links
 
+###################################################
+# telguflix movies
+
+def flix(url):
+    client = requests.session()
+    r = client.get(url)
+    soup = BeautifulSoup (r.text, "html.parser")
+        links = soup.select('a[href*="gdtot"]')
+        if len(links) == 0:
+             links = soup.select('a[href*="filepress"]')
+        gd_txt = f"Total Links Found : {len(links)}\n\n"
+        print(gd_txt)
+        for a in links:
+             link = a["href"]
+             print(link) 
+
+print(flix(url))
+
 
 ###################################################
 # script links
@@ -1950,6 +1968,12 @@ def shortners(url):
         or "https://teluguflix" in url or 'https://taemovies' in url or "https://toonworld4all" in url or "https://animeremux" in url:
         print("entered htpmovies sharespark cinevood atishmkv:",url)
         return scrappers(url)
+
+# telguflix
+    elif "https://teluguflix.xyz/" in url:
+        print("entered telguflix:",url)
+        return flix(url)
+
 
     # gdrive look alike
     elif ispresent(gdlist,url):
