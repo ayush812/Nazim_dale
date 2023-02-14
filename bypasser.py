@@ -320,20 +320,20 @@ def scrappers(link):
             prsd += o + '\n\n'
         return prsd
 
-   def teluguflix(url):
-    client = requests.session()
-    r = client.get(url)
-    soup = BeautifulSoup (r.text, "html.parser")
+   elif "teluguflix" in link:
+        gd_txt = ""
+        r = rget(link)
+        soup = BeautifulSoup (r.text, "html.parser")
         links = soup.select('a[href*="filepress"]')
-        if len(links) == 0:
-             links = soup.select('a[href*="gdtot"]')
         gd_txt = f"Total Links Found : {len(links)}\n\n"
-        print(gd_txt)
-        for a in links:
-             link = a["href"]
-             print(link) 
-
-print(flix(url))
+        for no, link in enumerate(links, start=1):
+            gdlk = link['href']
+            t = rget(gdlk)
+            soupt = BeautifulSoup(t.text, "html.parser")
+            title = soupt.select('meta[property^="og:description"]')
+            gd_txt += f"{no}. <code>{(title[0]['content']).replace('Download ' , '')}</code>\n{gdlk}\n\n"
+            asleep(1.5)
+        return gd_txt
     
     elif "taemovies" in link:
         gd_txt, no = "", 0
@@ -391,24 +391,6 @@ print(flix(url))
         for hy in mystx:
             links.append(hy['href'])
         return links
-
-
-###################################################
-# mkvcinemas
-
-def mkvcinemas(url):
-    movies_list = []
-    movies_details = {}
-    website = BeautifulSoup(requests.get(f"https://www.mkvcinemas.mom/?s={query.replace(' ', '+')}").text, "html.parser")
-    movies = website.find_all("a", {'class': 'ml-mask jt'})
-    for movie in movies:
-        if movie:
-            movies_details["id"] = f"link{movies.index(movie)}"
-            movies_details["title"] = movie.find("span", {'class': 'mli-info'}).text
-            url_list[movies_details["id"]] = movie['href']
-        movies_list.append(movies_details)
-        movies_details = {}
-    return movies_list
 
 
 ###################################################
@@ -1965,15 +1947,9 @@ def shortners(url):
 
     # htpmovies sharespark cinevood
     elif "https://htpmovies." in url or 'https://sharespark.me/' in url or "https://cinevood." in url or "https://atishmkv." in url \
-        or "https://teluguflix" in url or 'https://taemovies' in url or "https://toonworld4all" in url or "https://animeremux" in url:
+        or "https://teluguflix." in url or 'https://taemovies' in url or "https://toonworld4all" in url or "https://animeremux" in url:
         print("entered htpmovies sharespark cinevood atishmkv:",url)
         return scrappers(url)
-
-
-# mkvcinemas
-    elif "https://www.mkvcinemas." in url:
-        print("entered telguflix:",url)
-        return mkvcinemas(url)
 
 
     # gdrive look alike
