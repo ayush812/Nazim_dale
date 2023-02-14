@@ -320,11 +320,11 @@ def scrappers(link):
             prsd += o + '\n\n'
         return prsd
 
-  elif "teluguflix" in link:
+    elif "teluguflix" in link:
         gd_txt = ""
         r = rget(link)
         soup = BeautifulSoup (r.text, "html.parser")
-        links = soup.select('a[href*="filepress"]')
+        links = soup.select('a[href*="gdtot"]')
         gd_txt = f"Total Links Found : {len(links)}\n\n"
         for no, link in enumerate(links, start=1):
             gdlk = link['href']
@@ -391,6 +391,7 @@ def scrappers(link):
         for hy in mystx:
             links.append(hy['href'])
         return links
+
 
 
 ###################################################
