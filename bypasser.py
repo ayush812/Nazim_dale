@@ -320,7 +320,7 @@ def scrappers(link):
             prsd += o + '\n\n'
         return prsd
 
-   elif "teluguflix" in link:
+  elif "teluguflix" in link:
         gd_txt = ""
         r = rget(link)
         soup = BeautifulSoup (r.text, "html.parser")
