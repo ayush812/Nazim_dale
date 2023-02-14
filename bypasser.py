@@ -324,7 +324,7 @@ def scrappers(link):
         gd_txt = ""
         r = rget(link)
         soup = BeautifulSoup (r.text, "html.parser")
-        links = soup.select('a[href*="gdtot"]')
+        links = soup.select('a[href*="filepress"]')
         gd_txt = f"Total Links Found : {len(links)}\n\n"
         for no, link in enumerate(links, start=1):
             gdlk = link['href']
