@@ -16,6 +16,7 @@ from bypasser import ddllist
 bot_token = os.environ.get("TOKEN", "5744177498:AAFOuW4NCjt8EDiRE_G1HuQQ0NWua2MOv5o")
 api_hash = os.environ.get("HASH", "fbe8a002efe8427759371eab5809f1de") 
 api_id = os.environ.get("ID", "18123144")
+UPDATES_CHANNEL = os.environ.get("UPDATES_CHANNEL", "-1001731440190")
 app = Client("my_bot",api_id=api_id, api_hash=api_hash,bot_token=bot_token)  
 
 
