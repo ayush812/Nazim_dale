@@ -1470,20 +1470,37 @@ def unified(url):
 #####################################################################################################
 # urlsopen
 
-def urlsopem(url):
-    if "https://urlsopen.net/" not in url: url = "https://urlsopen.net/" + url.split("/")[-1]
+def urlsopen(url):
+    
     client = cloudscraper.create_scraper(allow_brotli=False)
-    DOMAIN = "https://blogpost.viewboonposts.com/"
+    
+    
+    DOMAIN = "https://blogpost.viewboonposts.com"
+
+    url = url[:-1] if url[-1] == '/' else url
+
+    code = url.split("/")[-1]
+    
+    final_url = f"{DOMAIN}/{code}"
+    
     ref = "https://blog.textpage.xyz/"
+    
     h = {"referer": ref}
-    resp = client.get(url,headers=h)
+  
+    resp = client.get(final_url,headers=h)
+    
     soup = BeautifulSoup(resp.content, "html.parser")
+    
     inputs = soup.find_all("input")
+   
     data = { input.get('name'): input.get('value') for input in inputs }
+
     h = { "x-requested-with": "XMLHttpRequest" }
-    time.sleep(8)
+    
+    time.sleep(2)
     r = client.post(f"{DOMAIN}/links/go", data=data, headers=h)
-    try: return r.json()['url']
+    try:
+        return r.json()['url']
     except: return "Something went wrong :("
 
 ####################################################################################################
