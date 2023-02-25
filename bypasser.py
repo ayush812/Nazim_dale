@@ -1142,21 +1142,28 @@ def adfly(url):
 # gplinks
 
 def gplinks(url: str):
- url = url[:-1] if url[-1] == '/' else url
- token = url.split("/")[-1]
- domain ="https://gplinks.co/"
- referer = "https://mynewsmedia.co/" 
- client = requests.Session()
- vid = client.get(url, allow_redirects= False).headers["Location"].split("=")[-1]
- url = f"{url}/?{vid}"
- response = client.get(url, allow_redirects=False)
- soup = BeautifulSoup(response.content, "html.parser")
- inputs = soup.find(id="go-link").find_all(name="input")
- data = { input.get('name'): input.get('value') for input in inputs }
- time.sleep(5)
- headers={"x-requested-with": "XMLHttpRequest"}
- bypassed_url = client.post(domain+"links/go", data=data, headers=headers).json()["url"]
- return bypassed_url
+    client = cloudscraper.create_scraper(allow_brotli=False)
+    p = urlparse(url)
+    final_url = f"{p.scheme}://{p.netloc}/links/go"
+    res = client.head(url)
+    header_loc = res.headers["location"]
+    p = urlparse(header_loc)
+    ref_url = f"{p.scheme}://{p.netloc}/"
+    h = {"referer": ref_url}
+    res = client.get(url, headers=h, allow_redirects=False)
+    bs4 = BeautifulSoup(res.content, "html.parser")
+    inputs = bs4.find_all("input")
+    time.sleep(10) # !important
+    data = { input.get("name"): input.get("value") for input in inputs }
+    h = {
+        "content-type": "application/x-www-form-urlencoded",
+        "x-requested-with": "XMLHttpRequest"
+    }
+    time.sleep(10)
+    res = client.post(final_url, headers=h, data=data)
+    try:
+        return res.json()["url"].replace("/","/")
+    except: 
 
 
 ######################################################################################################
