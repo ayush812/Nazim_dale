@@ -1,5 +1,6 @@
+cloudscraper==1.2.58
+beautifulsoup4==4.11.1
 requests
-cloudscraper
 bs4 
 python-dotenv
 pyrogram
