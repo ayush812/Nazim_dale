@@ -1665,7 +1665,7 @@ def tinyurl(tinyurl_url: str) -> str:
 ####################################################################################################
 #oggylinks
 
-def Oggylink(url):
+def oggylink(url):
     client = cloudscraper.create_scraper(allow_brotli=False)
     DOMAIN = "https://oggylink.com/"
     ref = "https://m.yotrickslog.tech/" 
