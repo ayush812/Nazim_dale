@@ -1662,7 +1662,25 @@ def mdiskshortner(url):
 def tinyurl(tinyurl_url: str) -> str:
 	response = requests.get(tinyurl_url).url
 	return response
+####################################################################################################
+#oggylinks
 
+def Oggylink(url):
+    client = cloudscraper.create_scraper(allow_brotli=False)
+    DOMAIN = "https://oggylink.com/"
+    ref = "https://m.yotrickslog.tech/" 
+    h = {"referer": ref}
+    resp = client.get(url,headers=h)
+    soup = BeautifulSoup(resp.content, "html.parser")
+    inputs = soup.find_all("input")
+    data = { input.get('name'): input.get('value') for input in inputs }
+    h = { "x-requested-with": "XMLHttpRequest" }
+    time.sleep(8)
+    r = client.post(f"{DOMAIN}/links/go", data=data, headers=h)
+    try:
+        return r.json()['url']
+    except: return "Something went wrong :("
+	
 #######################################################
 # gtlinks
 """
@@ -1940,6 +1958,11 @@ def shortners(url):
         print("entered mdiskshortner:",url)
         return mdiskshortner(url)
         
+# oggylink
+    elif "https://oggylink.com/" in url:
+        print("entered oggylink:",url)
+        return oggylink(url)
+
 # tinyurl
     elif "https://tinyurl.com/" in url:
         print("entered tinyurl:",url)
