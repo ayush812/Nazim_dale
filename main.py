@@ -16,11 +16,11 @@ from bypasser import ddllist
 bot_token = os.environ.get("TOKEN", "5744177498:AAFOuW4NCjt8EDiRE_G1HuQQ0NWua2MOv5o")
 api_hash = os.environ.get("HASH", "fbe8a002efe8427759371eab5809f1de") 
 api_id = os.environ.get("ID", "18123144")
-LOG_CHANNEL = int(environ.get('LOG_CHANNEL', ''))
-DATABASE_URI = environ.get('DATABASE_URI', "")
-FORCESUB_CHANNEL = environ.get('FORCESUB_CHANNEL', "")
-FORCESUB_CHANNEL_UNAME = environ.get('FORCESUB_CHANNEL_UNAME', "")
-BOTOWNER_UNAME = environ.get('BOTOWNER_UNAME', "")
+#LOG_CHANNEL = int(environ.get('LOG_CHANNEL', ''))
+#DATABASE_URI = environ.get('DATABASE_URI', "")
+#FORCESUB_CHANNEL = environ.get('FORCESUB_CHANNEL', "")
+#FORCESUB_CHANNEL_UNAME = environ.get('FORCESUB_CHANNEL_UNAME', "")
+$BOTOWNER_UNAME = environ.get('BOTOWNER_UNAME', "")
 app = Client("my_bot",api_id=api_id, api_hash=api_hash,bot_token=bot_token) 
 
 
