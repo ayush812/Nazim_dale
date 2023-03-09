@@ -20,7 +20,7 @@ api_id = os.environ.get("ID", "18123144")
 #DATABASE_URI = environ.get('DATABASE_URI', "")
 #FORCESUB_CHANNEL = environ.get('FORCESUB_CHANNEL', "")
 #FORCESUB_CHANNEL_UNAME = environ.get('FORCESUB_CHANNEL_UNAME', "")
-$BOTOWNER_UNAME = environ.get('BOTOWNER_UNAME', "")
+#BOTOWNER_UNAME = environ.get('BOTOWNER_UNAME', "")
 app = Client("my_bot",api_id=api_id, api_hash=api_hash,bot_token=bot_token) 
 
 
