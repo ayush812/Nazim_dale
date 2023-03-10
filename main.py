@@ -21,8 +21,9 @@ LOG_CHANNEL = int(os.environ.get('LOG_CHANNEL', '-1001502159118'))
 DATABASE_URI = os.environ.get('DATABASE_URI', "mongodb+srv://ayush:ayush@cluster0.j7epger.mongodb.net/?retryWrites=true&w=majority")
 FORCESUB_CHANNEL = os.environ.get('FORCESUB_CHANNEL', "-1001731440190")
 FORCESUB_CHANNEL_UNAME = os.environ.get('FORCESUB_CHANNEL_UNAME', "skmovieslinks")
-BOTOWNER_UNAME = os.environ.get('BOTOWNER_UNAME', "byp")
+BOTOWNER_UNAME = os.environ.get('BOTOWNER_UNAME', "Bypbsdkbot")
 OWNER_ID = int(os.environ.get('OWNER_ID', '5792678019'))
+BOTOWNER_UNAME  = os.environ.get('BOTOWNER_UNAME ', "Unknownmov_78")
 
 app = Client("my_bot",api_id=api_id, api_hash=api_hash,bot_token=bot_token) 
 
