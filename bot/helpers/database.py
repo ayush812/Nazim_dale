@@ -3,7 +3,7 @@ import datetime
 from pymongo import MongoClient
 from pymongo.errors import PyMongoError
 
-from .main import DATABASE_URL
+from main import DATABASE_URL
 from bot.logging import LOGGER
 
 
