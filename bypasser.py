@@ -1148,7 +1148,7 @@ def gplinks(url: str) -> str:
 	token = url.split("/")[-1]
 	
 	domain ="https://gplinks.co/"
-	referer = "https://mynewsmedia.co/"
+	referer = "https://revadvert.com/"
 
 	
 	client = requests.Session()
