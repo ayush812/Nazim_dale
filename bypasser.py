@@ -1485,7 +1485,7 @@ def urlsopen(url):
     client = cloudscraper.create_scraper(allow_brotli=False)
     
     
-    DOMAIN = "https://blogpost.viewboonposts.com/ss"
+    DOMAIN = "https://blogpost.viewboonposts.com/sss"
 
     url = url[:-1] if url[-1] == '/' else url
 
