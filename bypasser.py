@@ -10,11 +10,6 @@ from bs4 import BeautifulSoup, NavigableString, Tag
 from lxml import etree
 import hashlib
 import json
-
-from bot.helpers.database import DatabaseHelper
-from bot.helpers.functions import forcesub, get_readable_time
-from bot.logging import LOGGER
-
 from dotenv import load_dotenv
 load_dotenv()
 from asyncio import sleep as asleep
