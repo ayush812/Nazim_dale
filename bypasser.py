@@ -1,10 +1,6 @@
 import re
 from re import match as rematch, findall, sub as resub
 import requests
-
-from pymongo import MongoClient
-from pymongo.errors import PyMongoError
-
 from requests import get as rget
 import base64
 from urllib.parse import unquote, urlparse, parse_qs
