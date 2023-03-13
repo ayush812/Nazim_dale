@@ -2042,7 +2042,7 @@ def shortners(url):
 
 
     # htpmovies sharespark cinevood
-    elif "https://htpmovies." in url or 'https://sharespark.me/' in url or "https://cinevood." in url or "https://atishmkv." in url \
+    elif "https://htpmovies." in url or 'https://sharespark.me/' in url or "https://cinevood.tattoo" in url or "https://atishmkv." in url \
         or "https://teluguflix." in url or 'https://taemovies' in url or "https://toonworld4all" in url or "https://animeremux" in url:
         print("entered htpmovies sharespark cinevood atishmkv:",url)
         return scrappers(url)
