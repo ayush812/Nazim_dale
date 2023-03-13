@@ -825,6 +825,25 @@ def shareus(url):
     response = requests.get(bypassed_url).text
     return response
 
+#######################################################
+# skymovies hd
+def skymovieshd(url):
+        sent = sendMessage('Running Scrape ...', context.bot, update.message)
+        gd_txt = ""
+        res = rget(link, allow_redirects=False)
+        soup = BeautifulSoup(res.text, 'html.parser')
+        a = soup.select('a[href^="https://howblogs.xyz"]')
+        t = soup.select('div[class^="Robiul"]')
+        gd_txt += f"<i>{t[-1].text.replace('Download ', '')}</i>\n\n"
+        gd_txt += f"<b>{a[0].text} :</b> \n"
+        nres = rget(a[0]['href'], allow_redirects=False)
+        nsoup = BeautifulSoup(nres.text, 'html.parser')
+        atag = nsoup.select('div[class="cotent-box"] > a[href]')
+        for no, link in enumerate(atag, start=1):
+            gd_txt += f"{no}. {link['href']}\n"
+        editMessage(gd_txt, sent)
+
+
 
 #######################################################
 # shortingly
@@ -2003,9 +2022,13 @@ def shortners(url):
         print("entered lksfy:",url)
         return lksfy(url)
 # indi
-    elif "https://go.indiurl.in.net/" in url:
-        print("entered indi url:",url)
+    elif "skymovieshd" in url:
+        print("entered skymovies",url)
         return indi(url)
+#skymovies hd
+elif "https://go.indiurl.in.net/" in url:
+        print("entered indi url:",url)
+        return skymovieshd(url)
 #multibyp
     elif "https://rocklinks.net/" in url:
         print("entered rocklink url:",url)
