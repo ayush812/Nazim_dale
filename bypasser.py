@@ -2022,7 +2022,7 @@ def shortners(url):
         print("entered lksfy:",url)
         return lksfy(url)
 # skymovies
-    elif "skymovieshd" in url:
+    elif "https://skymovieshd.love/" in url:
         print("entered skymovies",url)
         return skymovieshd(url)
 #indi hd
