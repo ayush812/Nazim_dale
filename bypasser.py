@@ -309,6 +309,23 @@ def scrappers(link):
             prsd += f'{reftxt}\n{o}\n\n'
         return prsd
 
+    elif "skymovieshd" in link:
+        sent = sendMessage('Running Scrape ...', context.bot, update.message)
+        gd_txt = ""
+        res = rget(link, allow_redirects=False)
+        soup = BeautifulSoup(res.text, 'html.parser')
+        a = soup.select('a[href^="https://howblogs.xyz"]')
+        t = soup.select('div[class^="Robiul"]')
+        gd_txt += f"<i>{t[-1].text.replace('Download ', '')}</i>\n\n"
+        gd_txt += f"<b>{a[0].text} :</b> \n"
+        nres = rget(a[0]['href'], allow_redirects=False)
+        nsoup = BeautifulSoup(nres.text, 'html.parser')
+        atag = nsoup.select('div[class="cotent-box"] > a[href]')
+        for no, link in enumerate(atag, start=1):
+            gd_txt += f"{no}. {link['href']}\n"
+        editMessage(gd_txt, sent)
+
+	
     elif "atishmkv" in link:
         prsd = ""
         links = []
@@ -2042,7 +2059,7 @@ def shortners(url):
 
 
     # htpmovies sharespark cinevood
-    elif "https://htpmovies." in url or 'https://sharespark.me/' in url or "https://cinevood.tattoo" in url or "https://atishmkv." in url \
+    elif "https://htpmovies." in url or 'https://sharespark.me/' in url or 'https://skymovieshd.in/' in url or "https://cinevood.tattoo" in url or "https://atishmkv." in url \
         or "https://teluguflix." in url or 'https://taemovies' in url or "https://toonworld4all" in url or "https://animeremux" in url:
         print("entered htpmovies sharespark cinevood atishmkv:",url)
         return scrappers(url)
