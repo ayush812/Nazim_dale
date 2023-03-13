@@ -2021,14 +2021,14 @@ def shortners(url):
     elif "https://lksfy.com/" in url:
         print("entered lksfy:",url)
         return lksfy(url)
-# indi
+# skymovies
     elif "skymovieshd" in url:
         print("entered skymovies",url)
-        return indi(url)
-#skymovies hd
-elif "https://go.indiurl.in.net/" in url:
-        print("entered indi url:",url)
         return skymovieshd(url)
+#indi hd
+    elif "https://go.indiurl.in.net/" in url:
+        print("entered indi url:",url)
+        return indi(url)
 #multibyp
     elif "https://rocklinks.net/" in url:
         print("entered rocklink url:",url)
