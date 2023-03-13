@@ -298,14 +298,14 @@ def scrappers(link):
         links = []
         res = rget(link)
         soup = BeautifulSoup(res.text, 'html.parser')
-        x = soup.select('a[href^="https://kolop.icu/file"]')
+        x = soup.select('a[href^="https://filepress"]')
         for a in x:
             links.append(a['href'])
         for o in links:
             res = rget(o)
             soup = BeautifulSoup(res.content, "html.parser")
             title = soup.title.string
-            reftxt = resub(r'Kolop \| ', '', title)
+            reftxt = resub(r'fileprerss \| ', '', title)
             prsd += f'{reftxt}\n{o}\n\n'
         return prsd
 
