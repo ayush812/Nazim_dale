@@ -1659,7 +1659,7 @@ def adrinolink (url):
 
 def tnlink(url):
     client = requests.session()
-    DOMAIN = "https://gadgets.usanewstoday.club/"
+    DOMAIN = "https://internet.usanewstoday.club/"
     url = url[:-1] if url[-1] == '/' else url
     code = url.split("/")[-1]
     final_url = f"{DOMAIN}/{code}"
