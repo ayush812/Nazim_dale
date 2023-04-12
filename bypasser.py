@@ -1205,7 +1205,7 @@ def gplinks(url: str) -> str:
 	url = url[:-1] if url[-1] == '/' else url
 	token = url.split("/")[-1]
 	
-	domain ="https://gplinks.co/"
+	domain ="https://gplinks.in"
 	referer = "https://revadvert.com/"
 
 	
