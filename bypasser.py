@@ -1176,6 +1176,35 @@ def adfly(url):
 
 
 ##############################################################################################        
+# tinyfy
+def tinyfy(url):
+   
+    client = requests.session()
+    
+    DOMAIN = "https://tinyfy.in"
+
+    url = url[:-1] if url[-1] == '/' else url
+
+    code = url.split("/")[-1]
+    
+    final_url = f"{DOMAIN}/{code}"
+    
+    ref = "https://www.yotrickslog.tech/"
+    
+    h = {"referer": ref}
+  
+    resp = client.get(final_url,headers=h)
+    soup = BeautifulSoup(resp.content, "html.parser")
+    inputs = soup.find_all("input")
+    data = { input.get('name'): input.get('value') for input in inputs }
+    h = { "x-requested-with": "XMLHttpRequest" }
+    r = client.post(f"{DOMAIN}/links/go", data=data, headers=h)
+    try:
+        return r.json()['url']
+    except: return "Something went wrong :("
+    
+
+##############################################################################################        
 # gplinks
 
 def gplinks(url: str) -> str:
@@ -1946,6 +1975,11 @@ def shortners(url):
         print("entered gplink:",url)
         return gplinks(url)
         
+    # gplinks
+    elif "https://tinyfy.in" in url:
+        print("entered tinyfy:",url)
+        return tinyfy(url)
+
     # droplink
     elif "https://droplink.co/" in url:
         print("entered droplink:",url)
