@@ -897,36 +897,22 @@ def shortlingly(url):
 
 #######################################################
 # Gyanilinks - gtlinks.me
-"""
 def gyanilinks(url):
+    DOMAIN = "https://go.theforyou.in/"
     client = cloudscraper.create_scraper(allow_brotli=False)
-    if 'gtlinks.me' in url:
-        DOMAIN = "https://go.theforyou.in/"
-    else:
-        return "Incorrect Link"
-
     url = url[:-1] if url[-1] == '/' else url
-
     code = url.split("/")[-1]
-    
     final_url = f"{DOMAIN}/{code}"
-
     resp = client.get(final_url)
     soup = BeautifulSoup(resp.content, "html.parser")
-    
     try: inputs = soup.find(id="go-link").find_all(name="input")
     except: return "Incorrect Link"
-    
     data = { input.get('name'): input.get('value') for input in inputs }
-
     h = { "x-requested-with": "XMLHttpRequest" }
-    
     time.sleep(5)
     r = client.post(f"{DOMAIN}/links/go", data=data, headers=h)
-    try:
-        return r.json()['url']
+    try: return r.json()['url']
     except: return "Something went wrong :("
-    """
 
 
 #######################################################
@@ -1731,9 +1717,10 @@ def mdiskshortner(url):
 	
 ####################################################################################################
 # tinyurl
-def tinyurl(tinyurl_url: str) -> str:
-	response = requests.get(tinyurl_url).url
-	return response
+def tinyurl(url: str) -> str:
+	response = requests.get(url).url
+	try: return response
+	except: return "Something went wrong :("
 ####################################################################################################
 #oggylinks
 
@@ -1753,27 +1740,6 @@ def oggylink(url):
         return r.json()['url']
     except: return "Something went wrong :("
 	
-#######################################################
-# gtlinks
-"""
-def gtlinks(url: str) -> str:
-	url = url[:-1] if url[-1] == '/' else url
-	if "theforyou.in" in url:
-		token = url.split("=")[-1]
-	else:
-		url = requests.get(url).url
-		token = url.split("=")[-1]
-	domain = "https://go.theforyou.in/"
-	client = requests.Session()
-	response = client.get(domain+token, headers={"referer":domain+token})
-	soup = BeautifulSoup(response.content, "html.parser")
-	inputs = soup.find(id="go-link").find_all(name="input")
-	data = { input.get('name'): input.get('value') for input in inputs }
-	time.sleep(5)
-	headers={"x-requested-with": "XMLHttpRequest"}
-	bypassed_url = client.post(domain+"links/go", data=data, headers=headers).json()["url"]
-	return bypassed_url
-	"""
 
 #######################################################
 # lsfy (linkshort)
@@ -1819,36 +1785,6 @@ def indi(url):
         return r.json()['url']
     except: return "Something went wrong :("
 
-#######################################################
-# SUPPORTED DOMAINS:- rocklinks.net - gtlinks.me - shortingly.me
-
-def multi_byp(url):
-    client = cloudscraper.create_scraper(allow_brotli=False)
-    if 'rocklinks.net' in url:
-        DOMAIN = "https://rl.techysuccess.com"
-    elif 'gtlinks.me' in url:
-        DOMAIN = "https://go.kinemaster.cc"
-    elif 'shortingly.me' in url:
-        DOMAIN = "https://go.gyanitheme.com"
-    else:
-        DOMAIN = "https://rocklinks.net"
-    url = url[:-1] if url[-1] == '/' else url
-    code = url.split("/")[-1]
-    if 'rocklinks.net' in url:
-        final_url = f"{DOMAIN}/{code}?quelle=" 
-    else:
-        final_url = f"{DOMAIN}/{code}"
-    resp = client.get(final_url)
-    soup = BeautifulSoup(resp.content, "html.parser")
-    try: inputs = soup.find(id="go-link").find_all(name="input")
-    except: return "Incorrect Link"
-    data = { input.get('name'): input.get('value') for input in inputs }
-    h = { "x-requested-with": "XMLHttpRequest" }
-    time.sleep(10)
-    r = client.post(f"{DOMAIN}/links/go", data=data, headers=h)
-    try:
-        return r.json()['url']
-    except: return "Something went wrong :("
 
 #####################################################################################################        
 # helpers
@@ -2048,11 +1984,10 @@ def shortners(url):
     elif "https://tinyurl.com/" in url:
         print("entered tinyurl:",url)
         return tinyurl(url)
-
-# gtlinks
-    # elif "https://gtlinks.me" in url:
-        # print("entered gtlinks:",url)
-        # return gtlinks(url)
+ # gyanilinks
+    elif "https://gyanilinks.com/" in url or "https://gtlinks.me/" in url:
+        print("entered gyanilinks:",url)
+        return gyanilinks(url)
 # lksfy
     elif "https://lksfy.com/" in url:
         print("entered lksfy:",url)
