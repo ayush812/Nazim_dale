@@ -1704,7 +1704,7 @@ def tnlink(url):
 def omegalinks(url):
     client = cloudscraper.create_scraper(allow_brotli=False)
     DOMAIN = "https://mdisk.pro"
-    ref = "https://m.meclipstudy.in/" 
+    ref = "https://m.meclipstudy.in/"
     h = {"referer": ref}
     resp = client.get(url,headers=h)
     soup = BeautifulSoup(resp.content, "html.parser")
