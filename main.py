@@ -9,7 +9,7 @@ import ddl
 import requests
 import threading
 from texts import HELP_TEXT
-from bypasser import ddllist
+
 
 
 # bot
