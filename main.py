@@ -8,6 +8,7 @@ import os
 import ddl
 import requests
 import threading
+from ddl import ddllist
 from texts import HELP_TEXT
 
 
