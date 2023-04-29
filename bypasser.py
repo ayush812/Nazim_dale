@@ -132,11 +132,11 @@ def scrapeIndex(url, username="none", password="none"):
 
 def tnlink(url):
     client = requests.session()
-    DOMAIN = "https://internet.usanewstoday.club"
+    DOMAIN = "https://page.tnlink.in"
     url = url[:-1] if url[-1] == '/' else url
     code = url.split("/")[-1]
     final_url = f"{DOMAIN}/{code}"
-    ref = "https://usanewstoday.club/"
+    ref = "https://financeyogi.net"
     h = {"referer": ref}
     while len(client.cookies) == 0:
         resp = client.get(final_url,headers=h)
@@ -2003,7 +2003,7 @@ def shortners(url):
         return adrinolink(url)
     
     # tnlink
-    elif "https://link.tnlink.in/" in url:
+    elif "https://tnshort.in/" in url:
         print("entered tnlink:",url)
         return tnlink(url)
 
