@@ -14,7 +14,7 @@ from dotenv import load_dotenv
 load_dotenv()
 from asyncio import sleep as asleep
 import os
-import ddl
+# import ddl
 
 
 ##########################################################
