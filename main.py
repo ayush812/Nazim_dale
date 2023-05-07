@@ -5,10 +5,10 @@ from pyrogram import filters
 from pyrogram.types import InlineKeyboardMarkup,InlineKeyboardButton
 import bypasser
 import os
-# import ddl
+import ddl
 import requests
 import threading
-# from ddl import ddllist
+from ddl import ddllist
 from texts import HELP_TEXT
 
 
