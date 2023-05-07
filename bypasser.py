@@ -1265,7 +1265,7 @@ def gplinks(url: str):
     client = cloudscraper.create_scraper(allow_brotli=False)
     token = url.split("/")[-1]
     domain ="https://gplinks.co/"
-    referer = "https://mynewsmedia.co/"
+    referer = "https://revadvert.com"
     vid = client.get(url, allow_redirects= False).headers["Location"].split("=")[-1]
     url = f"{url}/?{vid}"
     response = client.get(url, allow_redirects=False)
