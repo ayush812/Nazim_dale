@@ -5,18 +5,18 @@ from pyrogram import filters
 from pyrogram.types import InlineKeyboardMarkup,InlineKeyboardButton
 import bypasser
 import os
-import ddl
+# import ddl
 import requests
 import threading
-from ddl import ddllist
+# from ddl import ddllist
 from texts import HELP_TEXT
 
 
 
 # bot
-bot_token = os.environ.get("TOKEN", "")
-api_hash = os.environ.get("HASH", "") 
-api_id = os.environ.get("ID", "")
+bot_token = os.environ.get("TOKEN", "5744177498:AAFOuW4NCjt8EDiRE_G1HuQQ0NWua2MOv5o")
+api_hash = os.environ.get("HASH", "fbe8a002efe8427759371eab5809f1de") 
+api_id = os.environ.get("ID", "18123144")
 app = Client("my_bot",api_id=api_id, api_hash=api_hash,bot_token=bot_token) 
 
 
