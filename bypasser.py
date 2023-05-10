@@ -990,7 +990,25 @@ def flashlink(url):
   r = client.post(f"{DOMAIN}/links/go", data=data, headers=h)
   return r.json()['url']
 
+##################################################################################################### 
+# urlspay
 
+def urlspay(url):
+    client = cloudscraper.create_scraper(allow_brotli=False)
+    DOMAIN = "https://finance.smallinfo.in"
+    ref = "https://insuranceinfos.in"
+    h = {"referer": ref}
+    resp = client.get(url,headers=h)
+    soup = BeautifulSoup(resp.content, "html.parser")
+    inputs = soup.find_all("input")
+    data = { input.get('name'): input.get('value') for input in inputs }
+    h = { "x-requested-with": "XMLHttpRequest" }
+    time.sleep(8)
+    r = client.post(f"{DOMAIN}/links/go", data=data, headers=h)
+    try:
+        return r.json()['url']
+    except: return "Something went wrong :("
+	
 #######################################################
 # short2url
 
@@ -1907,6 +1925,11 @@ def shortners(url):
     elif "https://go.flashlink.in/" in url:
         print("entered flashlink:",url)
         return flashlink(url)
+
+  # urlspay
+    elif "https://urlspay.in" in url:
+        print("entered urlspay:",url)
+        return urlspay(url)
 
     # short2url
     elif "https://short2url.in/" in url:
