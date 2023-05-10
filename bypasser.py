@@ -1540,7 +1540,7 @@ def unified(url):
 
 def urlsopen(url):
     client = cloudscraper.create_scraper(allow_brotli=False)
-    DOMAIN = "https://blogpost.viewboonposts.com/e99889333f1f665f5e755f2d1ae0009e0063ed66f889000"
+    DOMAIN = "https://blogpost.viewboonposts.com/e998889333f1f665f5e755f2d1ae0009e0063ed66f889000"
     url = url[:-1] if url[-1] == '/' else url
     code = url.split("/")[-1]
     final_url = f"{DOMAIN}/{code}"
