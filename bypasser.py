@@ -132,7 +132,7 @@ def scrapeIndex(url, username="none", password="none"):
 
 def tnlink(url):
     client = requests.session()
-    DOMAIN = "https://page.tnlink.in"
+    DOMAIN = "https://go.tnshort.net"
     url = url[:-1] if url[-1] == '/' else url
     code = url.split("/")[-1]
     final_url = f"{DOMAIN}/{code}"
@@ -1540,7 +1540,7 @@ def unified(url):
 
 def urlsopen(url):
     client = cloudscraper.create_scraper(allow_brotli=False)
-    DOMAIN = "https://blogpost.viewboonposts.com/e998889333f1f665f5e755f2d1ae0009e0063ed66f889000"
+    DOMAIN = "https://mcqask.com/en"
     url = url[:-1] if url[-1] == '/' else url
     code = url.split("/")[-1]
     final_url = f"{DOMAIN}/{code}"
@@ -2026,7 +2026,7 @@ def shortners(url):
         return adrinolink(url)
     
     # tnlink
-    elif "https://tnshort.in/" in url:
+    elif "https://link.tnshort.net" in url:
         print("entered tnlink:",url)
         return tnlink(url)
 
