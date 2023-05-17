@@ -1624,8 +1624,8 @@ def krownlinks(url):
 def adrinolink (url):
     if "https://adrinolinks.in/" not in url: url = "https://adrinolinks.in/" + url.split("/")[-1]
     client = cloudscraper.create_scraper(allow_brotli=False)
-    DOMAIN = "https://adrinolinks.in/"
-    ref = "https://amritadrino.com/"
+    DOMAIN = "https://adrinolinks.in"
+    ref = "https://amritadrino.com"
     h = {"referer": ref}
     resp = client.get(url,headers=h)
     soup = BeautifulSoup(resp.content, "html.parser")
@@ -2021,7 +2021,7 @@ def shortners(url):
         return krownlinks(url)
     
     # adrinolink
-    elif "https://adrinolinks." in url:
+    elif "https://adrinolinks.com" in url:
         print("entered adrinolink:",url)
         return adrinolink(url)
     
