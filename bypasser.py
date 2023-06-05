@@ -1037,6 +1037,16 @@ def short2url(url):
         return r.json()['url']
     except: return "Something went wrong :("
 
+##################################################################
+# atglinks
+
+
+def atglinks(url):
+    DOMAIN = "https://atglinks.com"
+    url = url[:-1] if url[-1] == "/" else url
+    code = url.split("/")[-1]
+    final_url = f"{DOMAIN}/{code}"
+    return final_url
 
 #######################################################
 # anonfiles
@@ -1898,6 +1908,11 @@ def shortners(url):
  
         print("entered hubdrive:",url)
         return hubdrive_dl(url, HCRYPT)
+
+ # atglinks
+    elif "https://files.technicalatg.com/" in url:
+        print("entered atglinks:", url)
+        return atglinks(url)
 
     # drivefire
     elif "https://drivefire." in url:
