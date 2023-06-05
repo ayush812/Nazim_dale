@@ -975,7 +975,7 @@ def gyanilinks(url):
     try:
         return r.json()["url"]
     except BaseException:
-        return "Something went wrong :(
+        return "Something went wrong :("
 
 
 #######################################################
