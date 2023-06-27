@@ -136,21 +136,40 @@ def tnlink(url):
     url = url[:-1] if url[-1] == '/' else url
     code = url.split("/")[-1]
     final_url = f"{DOMAIN}/{code}"
-    ref = "https://financeyogi.net"
+    ref = "https://market.finclub.in"
     h = {"referer": ref}
-    while len(client.cookies) == 0:
-        resp = client.get(final_url,headers=h)
-        time.sleep(2)
+    resp = client.get(final_url,headers=h)
     soup = BeautifulSoup(resp.content, "html.parser")
     inputs = soup.find_all("input")
     data = { input.get('name'): input.get('value') for input in inputs }
     h = { "x-requested-with": "XMLHttpRequest" }
     time.sleep(8)
     r = client.post(f"{DOMAIN}/links/go", data=data, headers=h)
-    try: return r.json()['url']
+    try:
+        return r.json()['url']
     except: return "Something went wrong :("
-
-
+	    
+###############################################################
+# Kps v2
+def kps(url):
+    client = requests.session()
+    DOMAIN = "https://v2download.kpslink.in"
+    url = url[:-1] if url[-1] == '/' else url
+    code = url.split("/")[-1]
+    final_url = f"{DOMAIN}/{code}"
+    ref = "https://v2.kpslink.in"
+    h = {"referer": ref}
+    resp = client.get(final_url,headers=h)
+    soup = BeautifulSoup(resp.content, "html.parser")
+    inputs = soup.find_all("input")
+    data = { input.get('name'): input.get('value') for input in inputs }
+    h = { "x-requested-with": "XMLHttpRequest" }
+    time.sleep(8)
+    r = client.post(f"{DOMAIN}/links/go", data=data, headers=h)
+    try:
+        return r.json()['url']
+    except: return "Something went wrong :("
+	    
 ###############################################################
 # psa 
 
@@ -2030,6 +2049,11 @@ def shortners(url):
     elif "https://du-link.in/" in url:
         print("entered dulink:",url)
         return dulink(url)
+	    
+   # dulink
+    elif "https://v2.kpslink.in" in url:
+        print("entered V2Kps:",url)
+        return kps(url)
 
     # ez4short
     elif "https://ez4short.com/" in url:
