@@ -169,7 +169,29 @@ def kps(url):
     try:
         return r.json()['url']
     except: return "Something went wrong :("
-	    
+
+###############################################################
+# onepage link
+def onepage(url):
+    
+    client = requests.session()
+    DOMAIN = "https://go.onepagelink.in/"
+    url = url[:-1] if url[-1] == '/' else url
+    code = url.split("/")[-1]
+    final_url = f"{DOMAIN}/{code}"
+    ref = "https://gorating.in/"
+    h = {"referer": ref}
+    resp = client.get(final_url,headers=h) 
+    soup = BeautifulSoup(resp.content, "html.parser")
+    inputs = soup.find_all("input") 
+    data = { input.get('name'): input.get('value') for input in inputs }
+    h = { "x-requested-with": "XMLHttpRequest" }
+    time.sleep(5)
+    r = client.post(f"{DOMAIN}/links/go", data=data, headers=h)
+    try:
+        return r.json()['url']
+    except: return "Something went wrong :("
+    
 ###############################################################
 # psa 
 
@@ -1969,6 +1991,11 @@ def shortners(url):
     elif "https://shortingly.in/" in url:
         print("entered shortingly:",url)
         return shortingly(url)
+
+   # onepage link
+    elif "https://onepagelink.in" in url:
+        print("entered shortingly:",url)
+        return onepage(url)
 
     # gyanilinks
     elif "https://gyanilinks.com/" in url or "https://gtlinks.me/" in url:
