@@ -1798,7 +1798,7 @@ def moneykamalo(url):
     
     final_url = f"{DOMAIN}/{code}"
     
-    ref = "https://techkeshri.com/"
+    ref = "https://blog.techkeshri.com/2023/07/5-skin-care-suggestions-for-your-busy.html?tp=scs&m=1"
     
     h = {"referer": ref}
   
@@ -1812,7 +1812,7 @@ def moneykamalo(url):
 
     h = { "x-requested-with": "XMLHttpRequest" }
     
-    time.sleep(5)
+    time.sleep(14)
     r = client.post(f"{DOMAIN}/links/go", data=data, headers=h)
     try:
         return r.json()['url']
